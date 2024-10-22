@@ -25,14 +25,12 @@ jobs:
         uses: google-github-actions/auth@v2
         with:
           credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+          project_id: notely-439012
 
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v2
         with:
           version: '>= 363.0.0'
-
-      - name: Configure Docker
-        run: gcloud auth configure-docker us-central1-docker.pkg.dev
 
       - name: Push Artifact
         run: gcloud builds submit --tag us-central1-docker.pkg.dev/notely-439012/notely-ar-repo/notely:latest .
